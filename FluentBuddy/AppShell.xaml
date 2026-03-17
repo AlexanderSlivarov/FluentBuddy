@@ -3,12 +3,38 @@
     x:Class="FluentBuddy.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:FluentBuddy"
+    xmlns:views="clr-namespace:FluentBuddy.Views"
     Title="FluentBuddy">
 
-    <ShellContent
+    <TabBar>
+        <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Route="home"
+        ContentTemplate="{DataTemplate views:HomePage}" />
 
+        <ShellContent
+        Title="Chat"
+        Route="chat"
+        ContentTemplate="{DataTemplate views:ChatPage}" />
+
+        <ShellContent
+        Title="Grammar"
+        Route="grammar"
+        ContentTemplate="{DataTemplate views:GrammarPage}" />
+
+        <ShellContent
+        Title="Dictionary"
+        Route="dictionary"
+        ContentTemplate="{DataTemplate views:DictionaryPage}" />
+
+        <ShellContent
+        Title="Quiz"
+        Route="quiz"
+        ContentTemplate="{DataTemplate views:QuizPage}" />
+
+        <ShellContent
+        Title="Settings"
+        Route="settings"
+        ContentTemplate="{DataTemplate views:SettingsPage}" />
+    </TabBar>
 </Shell>

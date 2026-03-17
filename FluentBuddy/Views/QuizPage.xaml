@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="FluentBuddy.Views.QuizPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Quiz"
+    BackgroundColor="#1E1E1E">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="16">
+
+            <Label
+                Text="Quiz"
+                FontSize="28"
+                FontAttributes="Bold"
+                TextColor="#B794F4" />
+
+            <Label
+                Text="Generate a quiz, answer the questions, and evaluate your result."
+                FontSize="14"
+                TextColor="White" />
+
+            <Entry
+                x:Name="TopicEntry"
+                Placeholder="Enter topic, e.g. Present Simple"
+                PlaceholderColor="#BBBBBB"
+                TextColor="White"
+                BackgroundColor="#2A2A2A" />
+
+            <HorizontalStackLayout Spacing="12">
+                <Button
+                    Text="Generate Quiz"
+                    Clicked="OnGenerateQuizClicked"
+                    BackgroundColor="#B794F4"
+                    TextColor="Black" />
+
+                <Button
+                    Text="Check Quiz"
+                    Clicked="OnCheckQuizClicked"
+                    BackgroundColor="#B794F4"
+                    TextColor="Black" />
+            </HorizontalStackLayout>
+
+            <Label
+                x:Name="StatusLabel"
+                Text=""
+                FontAttributes="Italic"
+                TextColor="White" />
+
+            <Label
+                x:Name="ScoreLabel"
+                Text=""
+                FontSize="18"
+                FontAttributes="Bold"
+                TextColor="#B794F4" />
+
+            <CollectionView x:Name="QuizCollectionView">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame
+                            Padding="16"
+                            Margin="0,6"
+                            BackgroundColor="#2A2A2A"
+                            BorderColor="#444"
+                            CornerRadius="12"
+                            HasShadow="False">
+                            <VerticalStackLayout Spacing="8">
+
+                                <Label
+                                    Text="{Binding Question}"
+                                    FontAttributes="Bold"
+                                    FontSize="16"
+                                    TextColor="White" />
+
+                                <Label
+                                    Text="Multiple Choice"
+                                    FontAttributes="Italic"
+                                    TextColor="White"
+                                    IsVisible="{Binding IsClosed}" />
+
+                                <Label
+                                    Text="Open Question"
+                                    FontAttributes="Italic"
+                                    TextColor="White"
+                                    IsVisible="{Binding IsOpen}" />
+
+                                <Picker
+                                    Title="Select an answer"
+                                    TitleColor="#666666"
+                                    TextColor="White"
+                                    BackgroundColor="#2A2A2A"
+                                    ItemsSource="{Binding Options}"
+                                    SelectedItem="{Binding SelectedOption}"
+                                    IsVisible="{Binding IsClosed}" />
+
+                                <Entry
+                                    Placeholder="Type your answer"
+                                    PlaceholderColor="#888888"
+                                    TextColor="White"
+                                    BackgroundColor="#2A2A2A"
+                                    Text="{Binding UserOpenAnswer}"
+                                    IsVisible="{Binding IsOpen}" />
+
+                                <Label
+                                    Text="{Binding ResultText}"
+                                    TextColor="{Binding ResultColor}"
+                                    FontAttributes="Bold"
+                                    IsVisible="{Binding ShowResult}" />
+
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

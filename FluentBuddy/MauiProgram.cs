@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿
+
+using FluentBuddy.Services;
 
 namespace FluentBuddy
 {
@@ -15,9 +17,8 @@ namespace FluentBuddy
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-#if DEBUG
-    		builder.Logging.AddDebug();
-#endif
+            builder.Services.AddSingleton<SettingsService>();
+            builder.Services.AddSingleton<IAiService, OpenAiService>();
 
             return builder.Build();
         }

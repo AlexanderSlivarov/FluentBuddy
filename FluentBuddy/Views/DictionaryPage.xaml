@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="FluentBuddy.Views.DictionaryPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Dictionary"
+    BackgroundColor="#1E1E1E">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="16">
+
+            <Label
+                Text="AI Dictionary"
+                FontSize="24"
+                FontAttributes="Bold"
+                TextColor="#B794F4" />
+
+            <Label
+                Text="Enter an English word to analyze its meaning, forms, synonyms, antonyms, and usage."
+                FontSize="14"
+                TextColor="White" />
+
+            <Entry
+                x:Name="WordEntry"
+                Placeholder="Enter a word, e.g. need"
+                PlaceholderColor="#BBBBBB"
+                TextColor="White"
+                BackgroundColor="#2A2A2A" />
+
+            <Button
+                Text="Analyze Word"
+                Clicked="OnAnalyzeClicked"
+                BackgroundColor="#B794F4"
+                TextColor="Black" />
+
+            <Frame
+                Padding="16"
+                BackgroundColor="#2A2A2A"
+                BorderColor="#444"
+                CornerRadius="12"
+                HasShadow="False">
+                <VerticalStackLayout Spacing="12">
+
+                    <Label Text="Word" FontAttributes="Bold" TextColor="White" />
+                    <Label x:Name="WordLabel" TextColor="White" />
+
+                    <Label Text="Meaning" FontAttributes="Bold" TextColor="White" />
+                    <Label x:Name="MeaningLabel" TextColor="White" />
+
+                    <Label Text="Part of Speech" FontAttributes="Bold" TextColor="White" />
+                    <Label x:Name="PartOfSpeechLabel" TextColor="White" />
+
+                    <Label Text="Forms" FontAttributes="Bold" TextColor="White" />
+                    <Label x:Name="FormsLabel" TextColor="White" />
+
+                    <Label Text="Word Family" FontAttributes="Bold" TextColor="White" />
+                    <Label x:Name="WordFamilyLabel" TextColor="White" />
+
+                    <Label Text="Synonyms" FontAttributes="Bold" TextColor="White" />
+                    <Label x:Name="SynonymsLabel" TextColor="White" />
+
+                    <Label Text="Antonyms" FontAttributes="Bold" TextColor="White" />
+                    <Label x:Name="AntonymsLabel" TextColor="White" />
+
+                    <Label Text="Examples" FontAttributes="Bold" TextColor="White" />
+                    <Label x:Name="ExamplesLabel" TextColor="White" />
+
+                    <Label Text="Usage" FontAttributes="Bold" TextColor="White" />
+                    <Label x:Name="UsageLabel" TextColor="White" />
+
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

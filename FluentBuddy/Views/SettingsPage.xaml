@@ -1,12 +1,48 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FluentBuddy.Views.SettingsPage"
-             Title="SettingsPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+<ContentPage
+    x:Class="FluentBuddy.Views.SettingsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Settings">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="16">
+            <Label
+                Text="Settings"
+                FontSize="24"
+                FontAttributes="Bold" />
+
+            <Label Text="AI Provider" />
+            <Picker x:Name="ProviderPicker"
+                    Title="Select AI Provider">
+                <Picker.Items>
+                    <x:String>OpenAI</x:String>
+                    <x:String>Gemini</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <Label Text="English Level" />
+            <Picker x:Name="LevelPicker"
+                    Title="Select English Level">
+                <Picker.Items>
+                    <x:String>Beginner</x:String>
+                    <x:String>Intermediate</x:String>
+                    <x:String>Advanced</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <Label Text="API Key" />
+            <Entry x:Name="ApiKeyEntry"
+                   Placeholder="Enter API key"
+                   IsPassword="True" />
+
+            <Button Text="Save Settings"
+                    Clicked="OnSaveSettingsClicked" />
+
+            <Label x:Name="StatusLabel"
+                   Text=""
+                   TextColor="Green"
+                   FontAttributes="Italic" />
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

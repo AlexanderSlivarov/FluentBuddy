@@ -3,26 +3,35 @@
     x:Class="FluentBuddy.Views.HomePage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Home">
+    Title="Home"
+    BackgroundColor="#1E1E1E">
 
     <ScrollView>
         <VerticalStackLayout Padding="24" Spacing="16">
             <Label
                 Text="FluentBuddy"
                 FontSize="30"
-                FontAttributes="Bold" />
+                FontAttributes="Bold"
+                TextColor="#B794F4" />
 
             <Label
                 Text="Your AI-powered English learning companion."
-                FontSize="16" />
+                FontSize="16"
+                TextColor="White" />
 
-            <Frame Padding="16">
+            <Frame
+                Padding="16"
+                BackgroundColor="#2A2A2A"
+                BorderColor="#444"
+                CornerRadius="12"
+                HasShadow="False">
                 <VerticalStackLayout Spacing="8">
-                    <Label Text="Main Features" FontSize="18" FontAttributes="Bold" />
-                    <Label Text="• AI Chat Practice" />
-                    <Label Text="• Grammar Correction" />
-                    <Label Text="• Vocabulary Generator" />
-                    <Label Text="• Cross-platform: Windows, Android, iOS" />
+                    <Label Text="Main Features" FontSize="18" FontAttributes="Bold" TextColor="White" />
+                    <Label Text="• AI Chat Practice" TextColor="White" />
+                    <Label Text="• Grammar Correction" TextColor="White" />
+                    <Label Text="• AI Dictionary" TextColor="White" />
+                    <Label Text="• Quiz Generator" TextColor="White" />
+                    <Label Text="• Cross-platform: Windows, Android, iOS" TextColor="#DDDDDD" />
                 </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>

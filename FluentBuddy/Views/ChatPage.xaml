@@ -1,12 +1,51 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FluentBuddy.Views.ChatPage"
-             Title="ChatPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+<ContentPage
+    x:Class="FluentBuddy.Views.ChatPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Chat"
+    BackgroundColor="#1E1E1E">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="16">
+            <Label
+                Text="AI Chat Practice"
+                FontSize="24"
+                FontAttributes="Bold"
+                TextColor="#B794F4" />
+
+            <Editor
+                x:Name="UserMessageEditor"
+                Placeholder="Type your message in English..."
+                PlaceholderColor="#BBBBBB"
+                TextColor="White"
+                BackgroundColor="#2A2A2A"
+                AutoSize="TextChanges"
+                HeightRequest="120" />
+
+            <Button
+                Text="Send"
+                Clicked="OnSendClicked"
+                BackgroundColor="#B794F4"
+                TextColor="Black" />
+
+            <Label
+                Text="AI Response"
+                FontAttributes="Bold"
+                FontSize="18"
+                TextColor="White" />
+
+            <Frame
+                Padding="16"
+                BackgroundColor="#2A2A2A"
+                BorderColor="#444"
+                CornerRadius="12"
+                HasShadow="False">
+                <Label
+                    x:Name="ResponseLabel"
+                    Text="Your AI response will appear here."
+                    TextColor="White" />
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
