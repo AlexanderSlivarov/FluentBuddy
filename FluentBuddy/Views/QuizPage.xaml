@@ -78,7 +78,8 @@
 
                         <Button
                             x:Name="CheckButton"
-                            Text="Check"                         
+                            Text="Check" 
+                            Clicked="OnCheckQuizClicked"
                             Pressed="OnButtonPressed"
                             Released="OnButtonReleased"
                             HeightRequest="52"
