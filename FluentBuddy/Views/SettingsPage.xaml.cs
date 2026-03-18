@@ -35,4 +35,12 @@ public partial class SettingsPage : ContentPage
         _settingsService.SaveSettings(settings);
         StatusLabel.Text = "Settings saved successfully.";
     }
+
+    private async void OnBackClicked(object sender, EventArgs e)
+    {
+        if (Shell.Current is not null)
+            await Shell.Current.GoToAsync("//home");
+        else
+            await Navigation.PopAsync();
+    }
 }

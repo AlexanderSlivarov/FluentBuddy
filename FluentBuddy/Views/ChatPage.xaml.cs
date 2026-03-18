@@ -44,4 +44,8 @@ public partial class ChatPage : ContentPage
 
         ResponseLabel.Text = response;
     }
+    private async void OnSettingsClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("//settings");
+    }
 }

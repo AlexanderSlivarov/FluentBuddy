@@ -6,6 +6,14 @@
     Title="Home"
     BackgroundColor="#1E1E1E">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem            
+            IconImageSource="settings.png"
+            Order="Primary"
+            Priority="0"
+            Clicked="OnSettingsClicked" />
+    </ContentPage.ToolbarItems>
+
     <ScrollView>
         <VerticalStackLayout Padding="24" Spacing="16">
             <Label
@@ -22,7 +30,7 @@
             <Border
                 Padding="16"
                 BackgroundColor="#2A2A2A">
-                
+
                 <VerticalStackLayout Spacing="8">
                     <Label Text="Main Features" FontSize="18" FontAttributes="Bold" TextColor="White" />
                     <Label Text="• AI Chat Practice" TextColor="White" />
@@ -31,7 +39,7 @@
                     <Label Text="• Quiz Generator" TextColor="White" />
                     <Label Text="• Cross-platform: Windows, Android, iOS" TextColor="#DDDDDD" />
                 </VerticalStackLayout>
-                
+
             </Border>
         </VerticalStackLayout>
     </ScrollView>

@@ -5,6 +5,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="Settings">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            IconImageSource="back.png"
+            Order="Primary"
+            Priority="0"
+            Clicked="OnBackClicked" />
+    </ContentPage.ToolbarItems>
+
     <ScrollView>
         <VerticalStackLayout Padding="24" Spacing="16">
             <Label
@@ -13,8 +21,9 @@
                 FontAttributes="Bold" />
 
             <Label Text="AI Provider" />
-            <Picker x:Name="ProviderPicker"
-                    Title="Select AI Provider">
+            <Picker
+                x:Name="ProviderPicker"
+                Title="Select AI Provider">
                 <Picker.Items>
                     <x:String>OpenAI</x:String>
                     <x:String>Gemini</x:String>
@@ -22,8 +31,9 @@
             </Picker>
 
             <Label Text="English Level" />
-            <Picker x:Name="LevelPicker"
-                    Title="Select English Level">
+            <Picker
+                x:Name="LevelPicker"
+                Title="Select English Level">
                 <Picker.Items>
                     <x:String>Beginner</x:String>
                     <x:String>Intermediate</x:String>
@@ -32,17 +42,20 @@
             </Picker>
 
             <Label Text="API Key" />
-            <Entry x:Name="ApiKeyEntry"
-                   Placeholder="Enter API key"
-                   IsPassword="True" />
+            <Entry
+                x:Name="ApiKeyEntry"
+                Placeholder="Enter API key"
+                IsPassword="True" />
 
-            <Button Text="Save Settings"
-                    Clicked="OnSaveSettingsClicked" />
+            <Button
+                Text="Save Settings"
+                Clicked="OnSaveSettingsClicked" />
 
-            <Label x:Name="StatusLabel"
-                   Text=""
-                   TextColor="Green"
-                   FontAttributes="Italic" />
+            <Label
+                x:Name="StatusLabel"
+                Text=""
+                TextColor="Green"
+                FontAttributes="Italic" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

@@ -40,4 +40,9 @@ public partial class GrammarPage : ContentPage
         ExplanationLabel.Text = result.Explanation;
         ExampleLabel.Text = result.ExtraExample;
     }
+
+    private async void OnSettingsClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("//settings");
+    }
 }

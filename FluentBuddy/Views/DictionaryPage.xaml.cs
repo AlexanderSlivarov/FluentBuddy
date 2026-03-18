@@ -67,4 +67,8 @@ public partial class DictionaryPage : ContentPage
             ? string.Join(Environment.NewLine, items.Select(x => $"• {x}"))
             : "—";
     }
+    private async void OnSettingsClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("//settings");
+    }
 }

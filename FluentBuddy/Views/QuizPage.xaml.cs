@@ -153,6 +153,11 @@ public partial class QuizPage : ContentPage
             : char.ToUpper(text[0]) + text[1..];
     }
 
+    private async void OnSettingsClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("//settings");
+    }
+
     private class QuizQuestionDisplay : INotifyPropertyChanged
     {
         private string _selectedOption = string.Empty;

@@ -6,6 +6,14 @@
     Title="Dictionary"
     BackgroundColor="#1E1E1E">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem            
+        IconImageSource="settings.png"
+        Order="Primary"
+        Priority="0"
+        Clicked="OnSettingsClicked" />
+    </ContentPage.ToolbarItems>
+
     <ScrollView>
         <VerticalStackLayout Padding="24" Spacing="16">
 
