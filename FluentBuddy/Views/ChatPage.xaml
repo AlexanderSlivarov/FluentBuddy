@@ -4,55 +4,108 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="Chat"
-    BackgroundColor="#1E1E1E">
+    BackgroundColor="#111827">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem            
-        IconImageSource="settings.png"
-        Order="Primary"
-        Priority="0"
-        Clicked="OnSettingsClicked" />
+        <ToolbarItem
+            IconImageSource="settings.png"
+            Order="Primary"
+            Priority="0"
+            Clicked="OnSettingsClicked" />
     </ContentPage.ToolbarItems>
 
     <ScrollView>
-        <VerticalStackLayout Padding="24" Spacing="16">
-            <Label
-                Text="AI Chat Practice"
-                FontSize="24"
-                FontAttributes="Bold"
-                TextColor="#B794F4" />
+        <VerticalStackLayout Padding="20,24,20,32" Spacing="20">          
+          
+            <VerticalStackLayout Spacing="6">
+                <Label
+                    Text="AI Chat Practice"
+                    FontSize="30"
+                    FontAttributes="Bold"
+                    TextColor="White" />
 
-            <Editor
-                x:Name="UserMessageEditor"
-                Placeholder="Type your message in English..."
-                PlaceholderColor="#BBBBBB"
-                TextColor="White"
-                BackgroundColor="#2A2A2A"
-                AutoSize="TextChanges"
-                HeightRequest="120" />
-
-            <Button
-                Text="Send"
-                Clicked="OnSendClicked"
-                BackgroundColor="#B794F4"
-                TextColor="Black" />
-
-            <Label
-                Text="AI Response"
-                FontAttributes="Bold"
-                FontSize="18"
-                TextColor="White" />
-
+                <Label
+                    Text="Practice English naturally and get instant AI feedback."
+                    FontSize="14"
+                    TextColor="#9CA3AF" />
+            </VerticalStackLayout>
+          
             <Border
-                Padding="16"
-                BackgroundColor="#2A2A2A">
+                StrokeThickness="1"
+                Stroke="#2A3342"
+                BackgroundColor="#1F2937"
+                StrokeShape="RoundRectangle 24"
+                Padding="18">
+
+                <VerticalStackLayout Spacing="14">
+                    <Label
+                        Text="Your message"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        TextColor="#E5E7EB" />
+
+                    <Border
+                        BackgroundColor="#111827"
+                        Stroke="#374151"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 18"
+                        Padding="12">
+
+                        <Editor
+                            x:Name="UserMessageEditor"
+                            Placeholder="Type your message in English..."
+                            PlaceholderColor="#6B7280"
+                            TextColor="White"
+                            BackgroundColor="Transparent"
+                            AutoSize="TextChanges"
+                            HeightRequest="140"
+                            FontSize="16" />
+                    </Border>
+
+                    <Button
+                        x:Name="SendButton"
+                        Text="Send Message"
+                        Clicked="OnSendClicked"
+                        HeightRequest="52"
+                        CornerRadius="16"
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        BackgroundColor="#A78BFA"
+                        TextColor="#111827" />
+                </VerticalStackLayout>
+            </Border>
+           
+            <Grid ColumnDefinitions="*,Auto" VerticalOptions="Center">
+                <VerticalStackLayout Spacing="2">
+                    <Label
+                        Text="AI Response"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        TextColor="White" />
+                    <Label
+                        Text="Corrections, suggestions, and natural phrasing"
+                        FontSize="13"
+                        TextColor="#9CA3AF" />
+                </VerticalStackLayout>
                 
+            </Grid>
+            
+            <Border
+                Padding="18"
+                BackgroundColor="#1F2937"
+                Stroke="#2A3342"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 24"
+                MinimumHeightRequest="220">
+
                 <Label
                     x:Name="ResponseLabel"
                     Text="Your AI response will appear here."
-                    TextColor="White" />
-                
+                    TextColor="#E5E7EB"
+                    FontSize="15"
+                    LineHeight="1.4" />
             </Border>
+
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
