@@ -14,11 +14,11 @@ namespace FluentBuddy
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");                  
                 });
 
             builder.Services.AddSingleton<SettingsService>();
-            builder.Services.AddSingleton<IAiService, OpenAiService>();
+            builder.Services.AddSingleton<IAiService, OpenAiService>();           
 
             return builder.Build();
         }

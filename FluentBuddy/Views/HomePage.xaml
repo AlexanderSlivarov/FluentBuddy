@@ -3,44 +3,206 @@
     x:Class="FluentBuddy.Views.HomePage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Home"
-    BackgroundColor="#1E1E1E">
+    Title="Home">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem            
+        <ToolbarItem
             IconImageSource="settings.png"
-            Order="Primary"
-            Priority="0"
             Clicked="OnSettingsClicked" />
     </ContentPage.ToolbarItems>
 
     <ScrollView>
-        <VerticalStackLayout Padding="24" Spacing="16">
-            <Label
-                Text="FluentBuddy"
-                FontSize="30"
-                FontAttributes="Bold"
-                TextColor="#B794F4" />
+        <VerticalStackLayout Padding="20,24,20,32" Spacing="18">
 
-            <Label
-                Text="Your AI-powered English learning companion."
-                FontSize="16"
-                TextColor="White" />
+            <Border Padding="22" BackgroundColor="{StaticResource SurfaceAltColor}">
+                <VerticalStackLayout Spacing="10">
 
-            <Border
-                Padding="16"
-                BackgroundColor="#2A2A2A">
+                    <Label
+                        Text="Welcome to FluentBuddy"
+                        FontSize="30"
+                        FontAttributes="Bold"
+                        TextColor="{StaticResource AccentPurple}" />
 
-                <VerticalStackLayout Spacing="8">
-                    <Label Text="Main Features" FontSize="18" FontAttributes="Bold" TextColor="White" />
-                    <Label Text="• AI Chat Practice" TextColor="White" />
-                    <Label Text="• Grammar Correction" TextColor="White" />
-                    <Label Text="• AI Dictionary" TextColor="White" />
-                    <Label Text="• Quiz Generator" TextColor="White" />
-                    <Label Text="• Cross-platform: Windows, Android, iOS" TextColor="#DDDDDD" />
+                    <Label
+                        Text="Build your English every day with AI conversation, grammar corrections, vocabulary tools, and quizzes."
+                        FontSize="15"
+                        TextColor="{StaticResource SecondaryText}"
+                        LineBreakMode="WordWrap" />
+
+                    <Border
+                        Padding="12"
+                        BackgroundColor="#14141B"
+                        Stroke="#2F2F3D"
+                        StrokeShape="RoundRectangle 16">
+                        <HorizontalStackLayout Spacing="10">
+                            <Label
+                                Text="🎯"
+                                FontSize="20"
+                                VerticalOptions="Center" />
+                            <VerticalStackLayout Spacing="2">
+                                <Label
+                                    Text="Today's Goal"
+                                    FontSize="13"
+                                    TextColor="{StaticResource MutedText}" />
+                                <Label
+                                    Text="Practice 10 minutes and learn 5 new words"
+                                    FontSize="14"
+                                    FontAttributes="Bold" />
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
+                    </Border>
+
                 </VerticalStackLayout>
-
             </Border>
+
+            <Label
+                Text="Learning Tools"
+                FontSize="21"
+                FontAttributes="Bold" />
+
+            <Grid
+                ColumnDefinitions="*,*"
+                RowDefinitions="Auto,Auto"
+                ColumnSpacing="12"
+                RowSpacing="12">
+
+                <!-- AI Chat -->
+                <Border Grid.Row="0" Grid.Column="0" Padding="16" BackgroundColor="{StaticResource SurfaceAltColor}">
+                    <Grid>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnChatClicked" />
+                            <PointerGestureRecognizer
+                                PointerEntered="OnCardPointerEntered"
+                                PointerExited="OnCardPointerExited" />
+                        </Grid.GestureRecognizers>
+
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="💬" FontSize="24" />
+                            <Label Text="AI Chat Practice" FontSize="16" FontAttributes="Bold" />
+                            <Label
+                                Text="Talk naturally with AI and improve fluency."
+                                FontSize="13"
+                                TextColor="{StaticResource SecondaryText}" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </Border>
+
+                <!-- Grammar -->
+                <Border Grid.Row="0" Grid.Column="1" Padding="16" BackgroundColor="{StaticResource SurfaceAltColor}">
+                    <Grid>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnGrammarClicked" />
+                            <PointerGestureRecognizer
+                                PointerEntered="OnCardPointerEntered"
+                                PointerExited="OnCardPointerExited" />
+                        </Grid.GestureRecognizers>
+
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="✍️" FontSize="24" />
+                            <Label Text="Grammar Check" FontSize="16" FontAttributes="Bold" />
+                            <Label
+                                Text="Fix sentence mistakes and learn why."
+                                FontSize="13"
+                                TextColor="{StaticResource SecondaryText}" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </Border>
+
+                <!-- Dictionary -->
+                <Border Grid.Row="1" Grid.Column="0" Padding="16" BackgroundColor="{StaticResource SurfaceAltColor}">
+                    <Grid>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnDictionaryClicked" />
+                            <PointerGestureRecognizer
+                                PointerEntered="OnCardPointerEntered"
+                                PointerExited="OnCardPointerExited" />
+                        </Grid.GestureRecognizers>
+
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="📖" FontSize="24" />
+                            <Label Text="Smart Dictionary" FontSize="16" FontAttributes="Bold" />
+                            <Label
+                                Text="See meanings, examples, and usage."
+                                FontSize="13"
+                                TextColor="{StaticResource SecondaryText}" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </Border>
+
+                <!-- Quiz -->
+                <Border Grid.Row="1" Grid.Column="1" Padding="16" BackgroundColor="{StaticResource SurfaceAltColor}">
+                    <Grid>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnQuizClicked" />
+                            <PointerGestureRecognizer
+                                PointerEntered="OnCardPointerEntered"
+                                PointerExited="OnCardPointerExited" />
+                        </Grid.GestureRecognizers>
+
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="🧠" FontSize="24" />
+                            <Label Text="Quiz Generator" FontSize="16" FontAttributes="Bold" />
+                            <Label
+                                Text="Test your progress with AI-generated quizzes."
+                                FontSize="13"
+                                TextColor="{StaticResource SecondaryText}" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </Border>
+
+            </Grid>
+
+            <Label
+                Text="Your Progress"
+                FontSize="21"
+                FontAttributes="Bold" />
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+
+                <Border Grid.Column="0" Padding="16" BackgroundColor="{StaticResource SurfaceAltColor}">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="🔥 7" FontSize="28" FontAttributes="Bold" TextColor="{StaticResource AccentOrange}" />
+                        <Label Text="Day Streak" FontSize="14" TextColor="{StaticResource SecondaryText}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Grid.Column="1" Padding="16" BackgroundColor="{StaticResource SurfaceAltColor}">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="📚 42" FontSize="28" FontAttributes="Bold" TextColor="{StaticResource AccentGreen}" />
+                        <Label Text="Words Learned" FontSize="14" TextColor="{StaticResource SecondaryText}" />
+                    </VerticalStackLayout>
+                </Border>
+
+            </Grid>
+
+            <Label
+                Text="Did You Know?"
+                FontSize="21"
+                FontAttributes="Bold" />
+
+            <Border Padding="18" BackgroundColor="{StaticResource SurfaceAltColor}">
+                <HorizontalStackLayout Spacing="12">
+
+                    <Label
+                        Text="🌍"
+                        FontSize="22"
+                        VerticalOptions="Start" />
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label
+                            Text="English has over 170,000 words in current use."
+                            FontSize="15"
+                            FontAttributes="Bold" />
+
+                        <Label
+                            Text="But you only need about 3,000 words to understand most everyday conversations."
+                            FontSize="13"
+                            TextColor="{StaticResource SecondaryText}" />
+                    </VerticalStackLayout>
+
+                </HorizontalStackLayout>
+            </Border>
+
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

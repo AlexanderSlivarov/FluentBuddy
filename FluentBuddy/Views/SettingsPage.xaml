@@ -48,7 +48,7 @@
                 IsPassword="True" />
 
             <Button
-                Text="Save Settings"
+                Text="Save Settings"                
                 Clicked="OnSaveSettingsClicked" />
 
             <Label
