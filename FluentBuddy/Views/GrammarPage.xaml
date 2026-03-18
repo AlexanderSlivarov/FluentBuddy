@@ -20,7 +20,9 @@
             <Button Text="Correct Sentence"
                 Clicked="OnCorrectClicked" />
 
-            <Frame Padding="16">
+            <Border Padding="16"
+                   BackgroundColor="#2A2A2A">
+
                 <VerticalStackLayout Spacing="10">
                     <Label Text="Corrected Sentence:" FontAttributes="Bold" />
                     <Label x:Name="CorrectedLabel" />
@@ -31,7 +33,7 @@
                     <Label Text="Example:" FontAttributes="Bold" />
                     <Label x:Name="ExampleLabel" />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
 
         </VerticalStackLayout>
     </ScrollView>

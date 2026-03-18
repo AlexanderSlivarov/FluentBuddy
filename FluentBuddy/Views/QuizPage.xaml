@@ -57,13 +57,11 @@
             <CollectionView x:Name="QuizCollectionView">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame
+                        <Border
                             Padding="16"
                             Margin="0,6"
-                            BackgroundColor="#2A2A2A"
-                            BorderColor="#444"
-                            CornerRadius="12"
-                            HasShadow="False">
+                            BackgroundColor="#2A2A2A">
+                            
                             <VerticalStackLayout Spacing="8">
 
                                 <Label
@@ -108,7 +106,7 @@
                                     IsVisible="{Binding ShowResult}" />
 
                             </VerticalStackLayout>
-                        </Frame>
+                        </Border>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

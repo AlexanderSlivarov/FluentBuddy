@@ -22,7 +22,7 @@
 
             <Entry
                 x:Name="WordEntry"
-                Placeholder="Enter a word, e.g. need"
+                Placeholder="Enter a word"
                 PlaceholderColor="#BBBBBB"
                 TextColor="White"
                 BackgroundColor="#2A2A2A" />
@@ -33,12 +33,9 @@
                 BackgroundColor="#B794F4"
                 TextColor="Black" />
 
-            <Frame
+            <Border
                 Padding="16"
-                BackgroundColor="#2A2A2A"
-                BorderColor="#444"
-                CornerRadius="12"
-                HasShadow="False">
+                BackgroundColor="#2A2A2A">
                 <VerticalStackLayout Spacing="12">
 
                     <Label Text="Word" FontAttributes="Bold" TextColor="White" />
@@ -69,8 +66,7 @@
                     <Label x:Name="UsageLabel" TextColor="White" />
 
                 </VerticalStackLayout>
-            </Frame>
-
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

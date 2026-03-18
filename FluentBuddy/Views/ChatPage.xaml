@@ -35,17 +35,16 @@
                 FontSize="18"
                 TextColor="White" />
 
-            <Frame
+            <Border
                 Padding="16"
-                BackgroundColor="#2A2A2A"
-                BorderColor="#444"
-                CornerRadius="12"
-                HasShadow="False">
+                BackgroundColor="#2A2A2A">
+                
                 <Label
                     x:Name="ResponseLabel"
                     Text="Your AI response will appear here."
                     TextColor="White" />
-            </Frame>
+                
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
