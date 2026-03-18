@@ -3,43 +3,161 @@
     x:Class="FluentBuddy.Views.GrammarPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Grammar">
+    Title="Grammar"
+    BackgroundColor="#111827">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem            
-        IconImageSource="settings.png"
-        Order="Primary"
-        Priority="0"
-        Clicked="OnSettingsClicked" />
+        <ToolbarItem
+            IconImageSource="settings.png"
+            Order="Primary"
+            Priority="0"
+            Clicked="OnSettingsClicked" />
     </ContentPage.ToolbarItems>
 
     <ScrollView>
-        <VerticalStackLayout Padding="24" Spacing="16">
+        <VerticalStackLayout Padding="20,24,20,32" Spacing="20">
 
-            <Label Text="Grammar Correction"
-               FontSize="24"
-               FontAttributes="Bold" />
+            <VerticalStackLayout Spacing="6">
+                <Label
+                    Text="Grammar Correction"
+                    FontSize="30"
+                    FontAttributes="Bold"
+                    TextColor="White" />
 
-            <Editor x:Name="SentenceEditor"
-                Placeholder="Write a sentence..."
-                AutoSize="TextChanges"
-                HeightRequest="120" />
+                <Label
+                    Text="Improve your sentence with AI-powered corrections, explanations, and examples."
+                    FontSize="14"
+                    TextColor="#9CA3AF" />
+            </VerticalStackLayout>
 
-            <Button Text="Correct Sentence"
-                Clicked="OnCorrectClicked" />
+            <Border
+                Stroke="#2A3342"
+                StrokeThickness="1"
+                BackgroundColor="#1F2937"
+                StrokeShape="RoundRectangle 24"
+                Padding="18">
 
-            <Border Padding="16"
-                   BackgroundColor="#2A2A2A">
+                <VerticalStackLayout Spacing="14">
+                    <Label
+                        Text="Your sentence"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        TextColor="#E5E7EB" />
 
-                <VerticalStackLayout Spacing="10">
-                    <Label Text="Corrected Sentence:" FontAttributes="Bold" />
-                    <Label x:Name="CorrectedLabel" />
+                    <Border
+                        BackgroundColor="#111827"
+                        Stroke="#374151"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 18"
+                        Padding="12">
 
-                    <Label Text="Explanation:" FontAttributes="Bold" />
-                    <Label x:Name="ExplanationLabel" />
+                        <Editor
+                            x:Name="SentenceEditor"
+                            Placeholder="Write a sentence..."
+                            PlaceholderColor="#6B7280"
+                            TextColor="White"
+                            BackgroundColor="Transparent"
+                            AutoSize="TextChanges"
+                            HeightRequest="140"
+                            FontSize="16" />
+                    </Border>
 
-                    <Label Text="Example:" FontAttributes="Bold" />
-                    <Label x:Name="ExampleLabel" />
+                    <Button
+                        x:Name="CorrectButton"
+                        Text="Correct Sentence"
+                        Clicked="OnCorrectClicked"
+                        Pressed="OnButtonPressed"
+                        Released="OnButtonReleased"
+                        HeightRequest="52"
+                        CornerRadius="16"
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        BackgroundColor="#A78BFA"
+                        TextColor="#111827" />
+                </VerticalStackLayout>
+            </Border>
+
+            <VerticalStackLayout Spacing="2">
+                <Label
+                    Text="Correction Result"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    TextColor="White" />
+                <Label
+                    Text="Clear corrections and explanations for better writing"
+                    FontSize="13"
+                    TextColor="#9CA3AF" />
+            </VerticalStackLayout>
+
+            <Border
+                Padding="18"
+                BackgroundColor="#1F2937"
+                Stroke="#2A3342"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 24">
+
+                <VerticalStackLayout Spacing="16">
+
+                    <Border
+                        BackgroundColor="#111827"
+                        Stroke="#2F3A4C"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 18"
+                        Padding="14">
+                        <VerticalStackLayout Spacing="6">
+                            <Label
+                                Text="Corrected Sentence"
+                                FontAttributes="Bold"
+                                FontSize="15"
+                                TextColor="#E5E7EB" />
+                            <Label
+                                x:Name="CorrectedLabel"                                
+                                TextColor="#D1D5DB"
+                                FontSize="14"
+                                LineHeight="1.4" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border
+                        BackgroundColor="#111827"
+                        Stroke="#2F3A4C"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 18"
+                        Padding="14">
+                        <VerticalStackLayout Spacing="6">
+                            <Label
+                                Text="Explanation"
+                                FontAttributes="Bold"
+                                FontSize="15"
+                                TextColor="#E5E7EB" />
+                            <Label
+                                x:Name="ExplanationLabel"                             
+                                TextColor="#D1D5DB"
+                                FontSize="14"
+                                LineHeight="1.4" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border
+                        BackgroundColor="#111827"
+                        Stroke="#2F3A4C"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 18"
+                        Padding="14">
+                        <VerticalStackLayout Spacing="6">
+                            <Label
+                                Text="Example"
+                                FontAttributes="Bold"
+                                FontSize="15"
+                                TextColor="#E5E7EB" />
+                            <Label
+                                x:Name="ExampleLabel"                                
+                                TextColor="#D1D5DB"
+                                FontSize="14"
+                                LineHeight="1.4" />
+                        </VerticalStackLayout>
+                    </Border>
+
                 </VerticalStackLayout>
             </Border>
 

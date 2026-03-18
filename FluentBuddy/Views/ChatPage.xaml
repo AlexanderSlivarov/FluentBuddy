@@ -66,6 +66,8 @@
                         x:Name="SendButton"
                         Text="Send Message"
                         Clicked="OnSendClicked"
+                        Pressed="OnButtonPressed"
+                        Released="OnButtonReleased"
                         HeightRequest="52"
                         CornerRadius="16"
                         FontAttributes="Bold"
@@ -99,8 +101,7 @@
                 MinimumHeightRequest="220">
 
                 <Label
-                    x:Name="ResponseLabel"
-                    Text="Your AI response will appear here."
+                    x:Name="ResponseLabel"                    
                     TextColor="#E5E7EB"
                     FontSize="15"
                     LineHeight="1.4" />

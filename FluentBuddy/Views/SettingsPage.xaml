@@ -3,7 +3,8 @@
     x:Class="FluentBuddy.Views.SettingsPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Settings">
+    Title="Settings"
+    BackgroundColor="#111827">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem
@@ -14,48 +15,131 @@
     </ContentPage.ToolbarItems>
 
     <ScrollView>
-        <VerticalStackLayout Padding="24" Spacing="16">
-            <Label
-                Text="Settings"
-                FontSize="24"
-                FontAttributes="Bold" />
+        <VerticalStackLayout Padding="20,24,20,32" Spacing="20">
 
-            <Label Text="AI Provider" />
-            <Picker
-                x:Name="ProviderPicker"
-                Title="Select AI Provider">
-                <Picker.Items>
-                    <x:String>OpenAI</x:String>
-                    <x:String>Gemini</x:String>
-                </Picker.Items>
-            </Picker>
+            <VerticalStackLayout Spacing="6">
+                <Label
+                    Text="Settings"
+                    FontSize="30"
+                    FontAttributes="Bold"
+                    TextColor="White" />
 
-            <Label Text="English Level" />
-            <Picker
-                x:Name="LevelPicker"
-                Title="Select English Level">
-                <Picker.Items>
-                    <x:String>Beginner</x:String>
-                    <x:String>Intermediate</x:String>
-                    <x:String>Advanced</x:String>
-                </Picker.Items>
-            </Picker>
+                <Label
+                    Text="Configure your AI provider and preferences."
+                    FontSize="14"
+                    TextColor="#9CA3AF" />
+            </VerticalStackLayout>
 
-            <Label Text="API Key" />
-            <Entry
-                x:Name="ApiKeyEntry"
-                Placeholder="Enter API key"
-                IsPassword="True" />
+            <Border
+                Stroke="#2A3342"
+                StrokeThickness="1"
+                BackgroundColor="#1F2937"
+                StrokeShape="RoundRectangle 24"
+                Padding="18">
 
-            <Button
-                Text="Save Settings"                
-                Clicked="OnSaveSettingsClicked" />
+                <VerticalStackLayout Spacing="18">
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label
+                            Text="AI Provider"
+                            FontSize="14"
+                            FontAttributes="Bold"
+                            TextColor="#E5E7EB" />
+
+                        <Border
+                            BackgroundColor="#111827"
+                            Stroke="#374151"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 16"
+                            Padding="6">
+
+                            <Picker
+                                x:Name="ProviderPicker"                               
+                                TitleColor="#6B7280"
+                                TextColor="White"
+                                BackgroundColor="Transparent">
+                                <Picker.Items>
+                                    <x:String>OpenAI</x:String>
+                                    <x:String>Gemini</x:String>
+                                </Picker.Items>
+                            </Picker>
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label
+                            Text="English Level"
+                            FontSize="14"
+                            FontAttributes="Bold"
+                            TextColor="#E5E7EB" />
+
+                        <Border
+                            BackgroundColor="#111827"
+                            Stroke="#374151"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 16"
+                            Padding="6">
+
+                            <Picker
+                                x:Name="LevelPicker"                               
+                                TitleColor="#6B7280"
+                                TextColor="White"
+                                BackgroundColor="Transparent">
+                                <Picker.Items>
+                                    <x:String>Beginner</x:String>
+                                    <x:String>Intermediate</x:String>
+                                    <x:String>Advanced</x:String>
+                                </Picker.Items>
+                            </Picker>
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label
+                            Text="API Key"
+                            FontSize="14"
+                            FontAttributes="Bold"
+                            TextColor="#E5E7EB" />
+
+                        <Border
+                            BackgroundColor="#111827"
+                            Stroke="#374151"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 16"
+                            Padding="12,6">
+
+                            <Entry
+                                x:Name="ApiKeyEntry"
+                                Placeholder="Enter API key"
+                                PlaceholderColor="#6B7280"
+                                TextColor="White"
+                                BackgroundColor="Transparent"
+                                IsPassword="True" />
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <Button
+                        x:Name="SaveButton"
+                        Text="Save Settings"
+                        Clicked="OnSaveSettingsClicked"
+                        Pressed="OnButtonPressed"
+                        Released="OnButtonReleased"
+                        HeightRequest="52"
+                        CornerRadius="16"
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        BackgroundColor="#A78BFA"
+                        TextColor="#111827" />
+
+                </VerticalStackLayout>
+            </Border>
 
             <Label
                 x:Name="StatusLabel"
-                Text=""
-                TextColor="Green"
+                FontSize="13"
+                TextColor="#86EFAC"
                 FontAttributes="Italic" />
+
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

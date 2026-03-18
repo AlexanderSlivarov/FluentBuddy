@@ -19,30 +19,69 @@ public partial class GrammarPage : ContentPage
 
         if (string.IsNullOrWhiteSpace(sentence))
         {
+            CorrectedLabel.Text = "—";
             ExplanationLabel.Text = "Please enter a sentence.";
+            ExampleLabel.Text = "—";
             return;
         }
 
-        var settings = _settingsService.GetSettings();
+        try
+        {
+            CorrectButton.IsEnabled = false;
+            CorrectButton.Text = "Correcting...";
 
-        IAiService aiService = settings.Provider == "Gemini"
-            ? new GeminiService()
-            : new OpenAiService();
+            CorrectedLabel.Text = "Generating correction...";
+            ExplanationLabel.Text = "Analyzing grammar...";
+            ExampleLabel.Text = "Preparing example...";
 
-        ExplanationLabel.Text = "Loading...";
+            var settings = _settingsService.GetSettings();
 
-        var result = await aiService.CorrectGrammarAsync(
-            sentence,
-            settings.EnglishLevel,
-            settings.ApiKey);
+            IAiService aiService = settings.Provider == "Gemini"
+                ? new GeminiService()
+                : new OpenAiService();
 
-        CorrectedLabel.Text = result.CorrectedSentence;
-        ExplanationLabel.Text = result.Explanation;
-        ExampleLabel.Text = result.ExtraExample;
+            var result = await aiService.CorrectGrammarAsync(
+                sentence,
+                settings.EnglishLevel,
+                settings.ApiKey);
+
+            CorrectedLabel.Text = result.CorrectedSentence;
+            ExplanationLabel.Text = result.Explanation;
+            ExampleLabel.Text = result.ExtraExample;
+        }
+        catch (Exception ex)
+        {
+            CorrectedLabel.Text = "Unable to correct the sentence.";
+            ExplanationLabel.Text = $"Something went wrong: {ex.Message}";
+            ExampleLabel.Text = "—";
+        }
+        finally
+        {
+            CorrectButton.IsEnabled = true;
+            CorrectButton.Text = "Correct Sentence";
+        }
     }
 
     private async void OnSettingsClicked(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync("//settings");
+    }
+
+    private async void OnButtonPressed(object sender, EventArgs e)
+    {
+        if (sender is Button button)
+        {
+            await button.ScaleTo(0.96, 80, Easing.CubicOut);
+            await button.FadeTo(0.9, 80, Easing.CubicOut);
+        }
+    }
+
+    private async void OnButtonReleased(object sender, EventArgs e)
+    {
+        if (sender is Button button)
+        {
+            await button.ScaleTo(1, 120, Easing.CubicOut);
+            await button.FadeTo(1, 120, Easing.CubicOut);
+        }
     }
 }

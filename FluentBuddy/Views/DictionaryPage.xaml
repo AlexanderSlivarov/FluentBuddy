@@ -65,6 +65,8 @@
                         x:Name="AnalyzeButton"
                         Text="Analyze Word"
                         Clicked="OnAnalyzeClicked"
+                        Pressed="OnButtonPressed"
+                        Released="OnButtonReleased"
                         HeightRequest="52"
                         CornerRadius="16"
                         FontSize="16"

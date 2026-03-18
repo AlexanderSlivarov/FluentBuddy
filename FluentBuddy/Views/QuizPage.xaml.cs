@@ -30,37 +30,52 @@ public partial class QuizPage : ContentPage
             return;
         }
 
-        StatusLabel.Text = "Loading...";
-        ScoreLabel.Text = string.Empty;
-        _questions.Clear();
-
-        var settings = _settingsService.GetSettings();
-
-        IAiService aiService = settings.Provider == "Gemini"
-            ? new GeminiService()
-            : new OpenAiService();
-
-        var quiz = await aiService.GenerateQuizAsync(topic, settings.EnglishLevel, settings.ApiKey);
-
-        if (quiz.Count == 0)
+        try
         {
-            StatusLabel.Text = "No quiz questions were generated.";
-            return;
+            GenerateButton.IsEnabled = false;
+            GenerateButton.Text = "Generating...";
+
+            StatusLabel.Text = "Generating quiz...";
+            ScoreLabel.Text = string.Empty;
+            _questions.Clear();
+
+            var settings = _settingsService.GetSettings();
+
+            IAiService aiService = settings.Provider == "Gemini"
+                ? new GeminiService()
+                : new OpenAiService();
+
+            var quiz = await aiService.GenerateQuizAsync(topic, settings.EnglishLevel, settings.ApiKey);
+
+            if (quiz.Count == 0)
+            {
+                StatusLabel.Text = "No quiz questions were generated.";
+                return;
+            }
+
+            foreach (var item in quiz.Select((q, index) => new QuizQuestionDisplay
+            {
+                Question = $"{index + 1}. {q.Question}",
+                Type = (q.Type ?? "closed").ToLower(),
+                Options = q.Options ?? new List<string>(),
+                CorrectAnswer = q.CorrectAnswer ?? string.Empty,
+                ResultColor = Colors.Transparent
+            }))
+            {
+                _questions.Add(item);
+            }
+
+            StatusLabel.Text = $"Generated {_questions.Count} questions.";
         }
-
-        foreach (var item in quiz.Select((q, index) => new QuizQuestionDisplay
+        catch (Exception ex)
         {
-            Question = $"{index + 1}. {q.Question}",
-            Type = (q.Type ?? "closed").ToLower(),
-            Options = q.Options ?? new List<string>(),
-            CorrectAnswer = q.CorrectAnswer ?? string.Empty,
-            ResultColor = Colors.Transparent
-        }))
-        {
-            _questions.Add(item);
+            StatusLabel.Text = $"Error: {ex.Message}";
         }
-
-        StatusLabel.Text = $"Generated {_questions.Count} questions.";
+        finally
+        {
+            GenerateButton.IsEnabled = true;
+            GenerateButton.Text = "Generate Quiz";
+        }
     }
 
     private void OnCheckQuizClicked(object sender, EventArgs e)
@@ -86,7 +101,7 @@ public partial class QuizPage : ContentPage
 
             if (isCorrect)
             {
-                question.ResultText = $"? Correct. Answer: {Capitalize(question.CorrectAnswer)}";
+                question.ResultText = $"Correct. Answer: {Capitalize(question.CorrectAnswer)}";
                 question.ResultColor = Colors.LightGreen;
                 correctCount++;
             }
@@ -97,7 +112,7 @@ public partial class QuizPage : ContentPage
                     : Capitalize(userAnswer);
 
                 question.ResultText =
-                    $"? Incorrect.\nYour answer: {shownUserAnswer}\nCorrect answer: {Capitalize(question.CorrectAnswer)}";
+                    $"Incorrect.\nYour answer: {shownUserAnswer}\nCorrect answer: {Capitalize(question.CorrectAnswer)}";
 
                 question.ResultColor = Colors.IndianRed;
             }
@@ -156,6 +171,24 @@ public partial class QuizPage : ContentPage
     private async void OnSettingsClicked(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync("//settings");
+    }
+
+    private async void OnButtonPressed(object sender, EventArgs e)
+    {
+        if (sender is Button button)
+        {
+            await button.ScaleTo(0.96, 80, Easing.CubicOut);
+            await button.FadeTo(0.9, 80, Easing.CubicOut);
+        }
+    }
+
+    private async void OnButtonReleased(object sender, EventArgs e)
+    {
+        if (sender is Button button)
+        {
+            await button.ScaleTo(1, 120, Easing.CubicOut);
+            await button.FadeTo(1, 120, Easing.CubicOut);
+        }
     }
 
     private class QuizQuestionDisplay : INotifyPropertyChanged

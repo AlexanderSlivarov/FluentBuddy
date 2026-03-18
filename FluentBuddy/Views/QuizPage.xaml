@@ -4,73 +4,121 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="Quiz"
-    BackgroundColor="#1E1E1E">
+    BackgroundColor="#111827">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem            
-        IconImageSource="settings.png"
-        Order="Primary"
-        Priority="0"
-        Clicked="OnSettingsClicked" />
+        <ToolbarItem
+            IconImageSource="settings.png"
+            Order="Primary"
+            Priority="0"
+            Clicked="OnSettingsClicked" />
     </ContentPage.ToolbarItems>
 
     <ScrollView>
-        <VerticalStackLayout Padding="24" Spacing="16">
+        <VerticalStackLayout Padding="20,24,20,32" Spacing="20">
 
-            <Label
-                Text="Quiz"
-                FontSize="28"
-                FontAttributes="Bold"
-                TextColor="#B794F4" />
+            <VerticalStackLayout Spacing="6">
+                <Label
+                    Text="AI Quiz"
+                    FontSize="30"
+                    FontAttributes="Bold"
+                    TextColor="White" />
 
-            <Label
-                Text="Generate a quiz, answer the questions, and evaluate your result."
-                FontSize="14"
-                TextColor="White" />
+                <Label
+                    Text="Generate a quiz, answer questions, and evaluate your performance."
+                    FontSize="14"
+                    TextColor="#9CA3AF" />
+            </VerticalStackLayout>
 
-            <Entry
-                x:Name="TopicEntry"
-                Placeholder="Enter topic, e.g. Present Simple"
-                PlaceholderColor="#BBBBBB"
-                TextColor="White"
-                BackgroundColor="#2A2A2A" />
+            <Border
+                Stroke="#2A3342"
+                StrokeThickness="1"
+                BackgroundColor="#1F2937"
+                StrokeShape="RoundRectangle 24"
+                Padding="18">
 
-            <HorizontalStackLayout Spacing="12">
-                <Button
-                    Text="Generate Quiz"
-                    Clicked="OnGenerateQuizClicked"
-                    BackgroundColor="#B794F4"
-                    TextColor="Black" />
+                <VerticalStackLayout Spacing="14">
 
-                <Button
-                    Text="Check Quiz"
-                    Clicked="OnCheckQuizClicked"
-                    BackgroundColor="#B794F4"
-                    TextColor="Black" />
-            </HorizontalStackLayout>
+                    <Label
+                        Text="Quiz topic"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        TextColor="#E5E7EB" />
 
-            <Label
-                x:Name="StatusLabel"
-                Text=""
-                FontAttributes="Italic"
-                TextColor="White" />
+                    <Border
+                        BackgroundColor="#111827"
+                        Stroke="#374151"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 16"
+                        Padding="12,4">
 
-            <Label
-                x:Name="ScoreLabel"
-                Text=""
-                FontSize="18"
-                FontAttributes="Bold"
-                TextColor="#B794F4" />
+                        <Entry
+                            x:Name="TopicEntry"
+                            Placeholder="Enter topic, e.g. Present Simple"
+                            PlaceholderColor="#6B7280"
+                            TextColor="White"
+                            BackgroundColor="Transparent"
+                            FontSize="16" />
+                    </Border>
+
+                    <HorizontalStackLayout Spacing="12">
+
+                        <Button
+                            x:Name="GenerateButton"
+                            Text="Generate Quiz"
+                            Clicked="OnGenerateQuizClicked"
+                            Pressed="OnButtonPressed"
+                            Released="OnButtonReleased"
+                            HeightRequest="52"
+                            CornerRadius="16"
+                            FontAttributes="Bold"
+                            FontSize="15"
+                            BackgroundColor="#A78BFA"
+                            TextColor="#111827" />
+
+                        <Button
+                            x:Name="CheckButton"
+                            Text="Check"                         
+                            Pressed="OnButtonPressed"
+                            Released="OnButtonReleased"
+                            HeightRequest="52"
+                            CornerRadius="16"
+                            FontAttributes="Bold"
+                            FontSize="15"
+                            BackgroundColor="#6366F1"
+                            TextColor="White" />
+
+                    </HorizontalStackLayout>
+
+                </VerticalStackLayout>
+            </Border>
+
+            <VerticalStackLayout Spacing="6">
+                <Label
+                    x:Name="StatusLabel"
+                    FontSize="13"
+                    TextColor="#9CA3AF" />
+
+                <Label
+                    x:Name="ScoreLabel"
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    TextColor="#A78BFA" />
+            </VerticalStackLayout>
 
             <CollectionView x:Name="QuizCollectionView">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
+
                         <Border
                             Padding="16"
                             Margin="0,6"
-                            BackgroundColor="#2A2A2A">
-                            
-                            <VerticalStackLayout Spacing="8">
+                            BackgroundColor="#1F2937"
+                            Stroke="#2A3342"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 20">
+
+                            <VerticalStackLayout Spacing="10">
 
                                 <Label
                                     Text="{Binding Question}"
@@ -81,40 +129,61 @@
                                 <Label
                                     Text="Multiple Choice"
                                     FontAttributes="Italic"
-                                    TextColor="White"
+                                    FontSize="12"
+                                    TextColor="#9CA3AF"
                                     IsVisible="{Binding IsClosed}" />
 
                                 <Label
                                     Text="Open Question"
                                     FontAttributes="Italic"
-                                    TextColor="White"
+                                    FontSize="12"
+                                    TextColor="#9CA3AF"
                                     IsVisible="{Binding IsOpen}" />
 
-                                <Picker
-                                    Title="Select an answer"
-                                    TitleColor="#666666"
-                                    TextColor="White"
-                                    BackgroundColor="#2A2A2A"
-                                    ItemsSource="{Binding Options}"
-                                    SelectedItem="{Binding SelectedOption}"
-                                    IsVisible="{Binding IsClosed}" />
+                                <Border
+                                    BackgroundColor="#111827"
+                                    Stroke="#374151"
+                                    StrokeThickness="1"
+                                    StrokeShape="RoundRectangle 14"
+                                    Padding="6"
+                                    IsVisible="{Binding IsClosed}">
 
-                                <Entry
-                                    Placeholder="Type your answer"
-                                    PlaceholderColor="#888888"
-                                    TextColor="White"
-                                    BackgroundColor="#2A2A2A"
-                                    Text="{Binding UserOpenAnswer}"
-                                    IsVisible="{Binding IsOpen}" />
+                                    <Picker
+                                        Title="Select an answer"
+                                        TitleColor="#6B7280"
+                                        TextColor="White"
+                                        BackgroundColor="Transparent"
+                                        ItemsSource="{Binding Options}"
+                                        SelectedItem="{Binding SelectedOption}" />
+                                </Border>
+
+                                <Border
+                                    BackgroundColor="#111827"
+                                    Stroke="#374151"
+                                    StrokeThickness="1"
+                                    StrokeShape="RoundRectangle 14"
+                                    Padding="10"
+                                    IsVisible="{Binding IsOpen}">
+
+                                    <Entry
+                                        Placeholder="Type your answer"
+                                        PlaceholderColor="#6B7280"
+                                        TextColor="White"
+                                        BackgroundColor="Transparent"
+                                        Text="{Binding UserOpenAnswer}" />
+                                </Border>
 
                                 <Label
                                     Text="{Binding ResultText}"
                                     TextColor="{Binding ResultColor}"
                                     FontAttributes="Bold"
+                                    FontSize="14"
                                     IsVisible="{Binding ShowResult}" />
 
                             </VerticalStackLayout>
+
                         </Border>
+
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

@@ -63,4 +63,22 @@ public partial class ChatPage : ContentPage
     {
         await Shell.Current.GoToAsync("//settings");
     }
+
+    private async void OnButtonPressed(object sender, EventArgs e)
+    {
+        if (sender is Button button)
+        {
+            await button.ScaleTo(0.96, 80, Easing.CubicOut);
+            await button.FadeTo(0.9, 80, Easing.CubicOut);
+        }
+    }
+
+    private async void OnButtonReleased(object sender, EventArgs e)
+    {
+        if (sender is Button button)
+        {
+            await button.ScaleTo(1, 120, Easing.CubicOut);
+            await button.FadeTo(1, 120, Easing.CubicOut);
+        }
+    }
 }
