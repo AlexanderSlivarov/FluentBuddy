@@ -4,74 +4,217 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="Dictionary"
-    BackgroundColor="#1E1E1E">
+    BackgroundColor="#111827">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem            
-        IconImageSource="settings.png"
-        Order="Primary"
-        Priority="0"
-        Clicked="OnSettingsClicked" />
+        <ToolbarItem
+            IconImageSource="settings.png"
+            Order="Primary"
+            Priority="0"
+            Clicked="OnSettingsClicked" />
     </ContentPage.ToolbarItems>
 
     <ScrollView>
-        <VerticalStackLayout Padding="24" Spacing="16">
+        <VerticalStackLayout Padding="20,24,20,32" Spacing="20">
+           
+            <VerticalStackLayout Spacing="6">
+                <Label
+                    Text="AI Dictionary"
+                    FontSize="30"
+                    FontAttributes="Bold"
+                    TextColor="White" />
 
-            <Label
-                Text="AI Dictionary"
-                FontSize="24"
-                FontAttributes="Bold"
-                TextColor="#B794F4" />
-
-            <Label
-                Text="Enter an English word to analyze its meaning, forms, synonyms, antonyms, and usage."
-                FontSize="14"
-                TextColor="White" />
-
-            <Entry
-                x:Name="WordEntry"
-                Placeholder="Enter a word"
-                PlaceholderColor="#BBBBBB"
-                TextColor="White"
-                BackgroundColor="#2A2A2A" />
-
-            <Button
-                Text="Analyze Word"
-                Clicked="OnAnalyzeClicked"
-                BackgroundColor="#B794F4"
-                TextColor="Black" />
-
+                <Label
+                    Text="Explore meaning, forms, synonyms, antonyms, and real usage examples."
+                    FontSize="14"
+                    TextColor="#9CA3AF" />
+            </VerticalStackLayout>
+            
             <Border
-                Padding="16"
-                BackgroundColor="#2A2A2A">
-                <VerticalStackLayout Spacing="12">
+                Stroke="#2A3342"
+                StrokeThickness="1"
+                BackgroundColor="#1F2937"
+                StrokeShape="RoundRectangle 24"
+                Padding="18">
 
-                    <Label Text="Word" FontAttributes="Bold" TextColor="White" />
-                    <Label x:Name="WordLabel" TextColor="White" />
+                <VerticalStackLayout Spacing="14">
+                    <Label
+                        Text="Search a word"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        TextColor="#E5E7EB" />
 
-                    <Label Text="Meaning" FontAttributes="Bold" TextColor="White" />
-                    <Label x:Name="MeaningLabel" TextColor="White" />
+                    <Border
+                        BackgroundColor="#111827"
+                        Stroke="#374151"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 16"
+                        Padding="12,4">
 
-                    <Label Text="Part of Speech" FontAttributes="Bold" TextColor="White" />
-                    <Label x:Name="PartOfSpeechLabel" TextColor="White" />
+                        <Entry
+                            x:Name="WordEntry"
+                            Placeholder="Enter a word"
+                            PlaceholderColor="#6B7280"
+                            TextColor="White"
+                            BackgroundColor="Transparent"
+                            FontSize="16"
+                            ClearButtonVisibility="WhileEditing" />
+                    </Border>
 
-                    <Label Text="Forms" FontAttributes="Bold" TextColor="White" />
-                    <Label x:Name="FormsLabel" TextColor="White" />
+                    <Button
+                        x:Name="AnalyzeButton"
+                        Text="Analyze Word"
+                        Clicked="OnAnalyzeClicked"
+                        HeightRequest="52"
+                        CornerRadius="16"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        BackgroundColor="#A78BFA"
+                        TextColor="#111827" />
+                </VerticalStackLayout>
+            </Border>
+            
+            <Grid ColumnDefinitions="*,Auto" VerticalOptions="Center">
+                <VerticalStackLayout Spacing="2">
+                    <Label
+                        Text="Analysis Result"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        TextColor="White" />
+                    <Label
+                        Text="Detailed AI breakdown of the selected word"
+                        FontSize="13"
+                        TextColor="#9CA3AF" />
+                </VerticalStackLayout>
+                
+            </Grid>
+         
+            <Border
+                Padding="18"
+                BackgroundColor="#1F2937"
+                Stroke="#2A3342"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 24">
 
-                    <Label Text="Word Family" FontAttributes="Bold" TextColor="White" />
-                    <Label x:Name="WordFamilyLabel" TextColor="White" />
+                <VerticalStackLayout Spacing="18">
 
-                    <Label Text="Synonyms" FontAttributes="Bold" TextColor="White" />
-                    <Label x:Name="SynonymsLabel" TextColor="White" />
+                    <VerticalStackLayout Spacing="4">
+                        <Label
+                            Text="Word"
+                            FontSize="13"
+                            FontAttributes="Bold"
+                            TextColor="#A78BFA" />
+                        <Label
+                            x:Name="WordLabel"
+                            Text="No word analyzed yet."
+                            FontSize="24"
+                            FontAttributes="Bold"
+                            TextColor="White" />
+                    </VerticalStackLayout>
+                 
+                    <Border
+                        BackgroundColor="#111827"
+                        Stroke="#2F3A4C"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 18"
+                        Padding="14">
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="Meaning" FontAttributes="Bold" FontSize="15" TextColor="#E5E7EB" />
+                            <Label x:Name="MeaningLabel" Text="—" TextColor="#D1D5DB" FontSize="14" LineHeight="1.35" />
+                        </VerticalStackLayout>
+                    </Border>
+                    
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                        <Border
+                            Grid.Column="0"
+                            BackgroundColor="#111827"
+                            Stroke="#2F3A4C"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 18"
+                            Padding="14">
+                            <VerticalStackLayout Spacing="6">
+                                <Label Text="Part of Speech" FontAttributes="Bold" FontSize="15" TextColor="#E5E7EB" />
+                                <Label x:Name="PartOfSpeechLabel" Text="—" TextColor="#D1D5DB" FontSize="14" />
+                            </VerticalStackLayout>
+                        </Border>
 
-                    <Label Text="Antonyms" FontAttributes="Bold" TextColor="White" />
-                    <Label x:Name="AntonymsLabel" TextColor="White" />
+                        <Border
+                            Grid.Column="1"
+                            BackgroundColor="#111827"
+                            Stroke="#2F3A4C"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 18"
+                            Padding="14">
+                            <VerticalStackLayout Spacing="6">
+                                <Label Text="Forms" FontAttributes="Bold" FontSize="15" TextColor="#E5E7EB" />
+                                <Label x:Name="FormsLabel" Text="—" TextColor="#D1D5DB" FontSize="14" LineHeight="1.3" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>
+                    
+                    <Border
+                        BackgroundColor="#111827"
+                        Stroke="#2F3A4C"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 18"
+                        Padding="14">
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="Word Family" FontAttributes="Bold" FontSize="15" TextColor="#E5E7EB" />
+                            <Label x:Name="WordFamilyLabel" Text="—" TextColor="#D1D5DB" FontSize="14" LineHeight="1.35" />
+                        </VerticalStackLayout>
+                    </Border>
+                    
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                        <Border
+                            Grid.Column="0"
+                            BackgroundColor="#111827"
+                            Stroke="#2F3A4C"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 18"
+                            Padding="14">
+                            <VerticalStackLayout Spacing="6">
+                                <Label Text="Synonyms" FontAttributes="Bold" FontSize="15" TextColor="#E5E7EB" />
+                                <Label x:Name="SynonymsLabel" Text="—" TextColor="#D1D5DB" FontSize="14" LineHeight="1.35" />
+                            </VerticalStackLayout>
+                        </Border>
 
-                    <Label Text="Examples" FontAttributes="Bold" TextColor="White" />
-                    <Label x:Name="ExamplesLabel" TextColor="White" />
+                        <Border
+                            Grid.Column="1"
+                            BackgroundColor="#111827"
+                            Stroke="#2F3A4C"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 18"
+                            Padding="14">
+                            <VerticalStackLayout Spacing="6">
+                                <Label Text="Antonyms" FontAttributes="Bold" FontSize="15" TextColor="#E5E7EB" />
+                                <Label x:Name="AntonymsLabel" Text="—" TextColor="#D1D5DB" FontSize="14" LineHeight="1.35" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>
 
-                    <Label Text="Usage" FontAttributes="Bold" TextColor="White" />
-                    <Label x:Name="UsageLabel" TextColor="White" />
+                    <Border
+                        BackgroundColor="#111827"
+                        Stroke="#2F3A4C"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 18"
+                        Padding="14">
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="Examples" FontAttributes="Bold" FontSize="15" TextColor="#E5E7EB" />
+                            <Label x:Name="ExamplesLabel" Text="—" TextColor="#D1D5DB" FontSize="14" LineHeight="1.4" />
+                        </VerticalStackLayout>
+                    </Border>
+  
+                    <Border
+                        BackgroundColor="#111827"
+                        Stroke="#2F3A4C"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 18"
+                        Padding="14">
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="Usage" FontAttributes="Bold" FontSize="15" TextColor="#E5E7EB" />
+                            <Label x:Name="UsageLabel" Text="—" TextColor="#D1D5DB" FontSize="14" LineHeight="1.4" />
+                        </VerticalStackLayout>
+                    </Border>
 
                 </VerticalStackLayout>
             </Border>

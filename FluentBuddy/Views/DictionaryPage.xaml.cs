@@ -17,41 +17,70 @@ public partial class DictionaryPage : ContentPage
         var word = WordEntry.Text?.Trim();
 
         if (string.IsNullOrWhiteSpace(word))
-        {
+        {           
             MeaningLabel.Text = "Please enter a word.";
             return;
         }
 
-        WordLabel.Text = "Loading...";
-        MeaningLabel.Text = string.Empty;
-        PartOfSpeechLabel.Text = string.Empty;
-        FormsLabel.Text = string.Empty;
-        WordFamilyLabel.Text = string.Empty;
-        SynonymsLabel.Text = string.Empty;
-        AntonymsLabel.Text = string.Empty;
-        ExamplesLabel.Text = string.Empty;
-        UsageLabel.Text = string.Empty;
+        try
+        {
+            AnalyzeButton.IsEnabled = false;
+            AnalyzeButton.Text = "Analyzing...";            
 
-        var settings = _settingsService.GetSettings();
+            ResetResultState();
+            WordLabel.Text = word;
+            MeaningLabel.Text = "Generating analysis...";
 
-        IAiService aiService = settings.Provider == "Gemini"
-            ? new GeminiService()
-            : new OpenAiService();
+            var settings = _settingsService.GetSettings();
 
-        var result = await aiService.AnalyzeWordAsync(
-            word,
-            settings.EnglishLevel,
-            settings.ApiKey);
+            IAiService aiService = settings.Provider == "Gemini"
+                ? new GeminiService()
+                : new OpenAiService();
 
-        WordLabel.Text = result.Word;
-        MeaningLabel.Text = result.Meaning;
-        PartOfSpeechLabel.Text = result.PartOfSpeech;
-        FormsLabel.Text = JoinList(result.Forms);
-        WordFamilyLabel.Text = JoinList(result.WordFamily);
-        SynonymsLabel.Text = JoinList(result.Synonyms);
-        AntonymsLabel.Text = JoinList(result.Antonyms);
-        ExamplesLabel.Text = JoinLines(result.Examples);
-        UsageLabel.Text = result.Usage;
+            var result = await aiService.AnalyzeWordAsync(
+                word,
+                settings.EnglishLevel,
+                settings.ApiKey);
+
+            WordLabel.Text = result.Word;
+            MeaningLabel.Text = result.Meaning;
+            PartOfSpeechLabel.Text = result.PartOfSpeech;
+            FormsLabel.Text = JoinList(result.Forms);
+            WordFamilyLabel.Text = JoinList(result.WordFamily);
+            SynonymsLabel.Text = JoinList(result.Synonyms);
+            AntonymsLabel.Text = JoinList(result.Antonyms);
+            ExamplesLabel.Text = JoinLines(result.Examples);
+            UsageLabel.Text = result.Usage;           
+        }
+        catch (Exception ex)
+        {            
+            WordLabel.Text = "Analysis failed";
+            MeaningLabel.Text = $"Something went wrong: {ex.Message}";
+            PartOfSpeechLabel.Text = "—";
+            FormsLabel.Text = "—";
+            WordFamilyLabel.Text = "—";
+            SynonymsLabel.Text = "—";
+            AntonymsLabel.Text = "—";
+            ExamplesLabel.Text = "—";
+            UsageLabel.Text = "—";
+        }
+        finally
+        {
+            AnalyzeButton.IsEnabled = true;
+            AnalyzeButton.Text = "Analyze Word";
+        }
+    }
+
+    private void ResetResultState()
+    {
+        MeaningLabel.Text = "—";
+        PartOfSpeechLabel.Text = "—";
+        FormsLabel.Text = "—";
+        WordFamilyLabel.Text = "—";
+        SynonymsLabel.Text = "—";
+        AntonymsLabel.Text = "—";
+        ExamplesLabel.Text = "—";
+        UsageLabel.Text = "—";
     }
 
     private static string JoinList(List<string>? items)
@@ -67,6 +96,7 @@ public partial class DictionaryPage : ContentPage
             ? string.Join(Environment.NewLine, items.Select(x => $"• {x}"))
             : "—";
     }
+
     private async void OnSettingsClicked(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync("//settings");

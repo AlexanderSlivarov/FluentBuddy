@@ -15,8 +15,8 @@
     </ContentPage.ToolbarItems>
 
     <ScrollView>
-        <VerticalStackLayout Padding="20,24,20,32" Spacing="20">          
-          
+        <VerticalStackLayout Padding="20,24,20,32" Spacing="20">
+      
             <VerticalStackLayout Spacing="6">
                 <Label
                     Text="AI Chat Practice"
@@ -29,7 +29,7 @@
                     FontSize="14"
                     TextColor="#9CA3AF" />
             </VerticalStackLayout>
-          
+            
             <Border
                 StrokeThickness="1"
                 Stroke="#2A3342"

@@ -17,9 +17,7 @@ public partial class ChatPage : ContentPage
         var userMessage = UserMessageEditor.Text?.Trim();
 
         if (string.IsNullOrWhiteSpace(userMessage))
-        {
-            StatusLabel.Text = "Missing input";
-            StatusLabel.TextColor = Color.FromArgb("#FCA5A5");
+        {            
             ResponseLabel.Text = "Please enter a message first.";
             return;
         }
@@ -27,9 +25,7 @@ public partial class ChatPage : ContentPage
         try
         {
             SendButton.IsEnabled = false;
-            SendButton.Text = "Sending...";
-            StatusLabel.Text = "Thinking...";
-            StatusLabel.TextColor = Color.FromArgb("#FCD34D");
+            SendButton.Text = "Sending...";           
             ResponseLabel.Text = "Generating response...";
 
             var settings = _settingsService.GetSettings();
@@ -50,14 +46,10 @@ public partial class ChatPage : ContentPage
                 settings.EnglishLevel,
                 settings.ApiKey);
 
-            ResponseLabel.Text = response;
-            StatusLabel.Text = "Done";
-            StatusLabel.TextColor = Color.FromArgb("#86EFAC");
+            ResponseLabel.Text = response;            
         }
         catch (Exception ex)
-        {
-            StatusLabel.Text = "Error";
-            StatusLabel.TextColor = Color.FromArgb("#FCA5A5");
+        {            
             ResponseLabel.Text = $"Something went wrong: {ex.Message}";
         }
         finally
